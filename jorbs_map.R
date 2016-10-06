@@ -1,5 +1,5 @@
 # be sure to set your working directory properly! see the next line.
-setwd("~/Desktop")
+setwd("~/githubprojects/mapjorbs")
 raw <- read.csv(file="map_dem_jorbs.csv", header=T)
 library(ggmap)
 address <- geocode(as.character(raw$Address))
@@ -15,5 +15,5 @@ ironyard <- leaflet() %>%
   addTiles() %>% 
   addProviderTiles("Esri.NatGeoWorldMap") %>%
   setView(-95.37, 29.75, zoom = 5) %>% 
-  addMarkers(data = raw, lng = ~ lon, lat = ~ lat, icon = tiyicon, popup = paste("Company: ",raw$Company,"<br/>Position: ",raw$Position))
+  addMarkers(data = raw, lng = ~ lon, lat = ~ lat, icon = tiyicon, popup = paste("Company: ",raw$Company,"<br/>Position: ",raw$Position, "<br/>Class: ",raw$Class), clusterOptions=markerClusterOptions())
 ironyard
